@@ -1,0 +1,21 @@
+services:
+  guardian-service:
+    build:
+      context: .
+      dockerfile: guardian-service/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: test
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  ui:
+    image: nginx:alpine
+    ports:
+      - "3000:80"
+    volumes:
+      - ./tests-ui/mock-ui:/usr/share/nginx/html:ro

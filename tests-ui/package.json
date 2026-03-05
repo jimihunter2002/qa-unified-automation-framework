@@ -1,0 +1,17 @@
+{
+  "name": "tests-ui",
+  "version": "1.0.0",
+  "description": "ui tests for ace platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "dotenv": "^16.4.5"
+  }
+}

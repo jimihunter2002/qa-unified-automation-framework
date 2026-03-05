@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "types": ["jest", "node", "@pact-foundation/pact"],
+    "skipLibCheck": true,
+    "isolatedModules": true
+  },
+  
+
+}

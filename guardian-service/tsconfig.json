@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "esnext",
+    "moduleResolution": "NodeNext",
+    "isolatedModules": true,
+    "types": ["jest", "node"],
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "rootDir": "./"
+  },
+  "include": ["src/**/*", "tests/**/*.test.ts"],
+  "exclude": ["node_modules", "dist"]
+}

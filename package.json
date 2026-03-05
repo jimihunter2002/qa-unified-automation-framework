@@ -1,0 +1,63 @@
+{
+  "name": "unified-framework-ace-plaform",
+  "version": "1.0.0",
+  "description": "Dependencies",
+  "main": "index.js",
+  "workspaces": [
+    "guardian-service",
+    "tests-api",
+    "tests-bdd",
+    "tests-pact",
+    "tests-ui",
+    "tests-federated"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "build:guardian": "npm run build -w guardian-service",
+    "start:guardian": "docker compose up --build -d",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint": "mkdir -p reports &&eslint . --fix --format json --output-file reports/lint-results.json",
+    "test:unit": "npm run test -w guardian-service -- --coverage",
+    "test:api": "npm run test -w tests-api",
+    "test:bdd": "npm run test -w tests-bdd",
+    "test:pact": "npm run test -w tests-pact",
+    "test:ui": "npm run test -w tests-ui",
+    "test:perf": "k6 run -e GUARDIAN_API_URL=http://localhost:3001 tests-performance/guardian-load.js",
+    "test:federated": "npm run test -w tests-federated",
+    "test:all": "npm run format:fix && npm run lint; npm run test:unit; npm run test:pact; npm run test:api; npm run test:bdd; npm run test:ui; npm run test:federated; npm run test:perf; npm run report:summary",
+    "ci": "npm run build:guardian && docker compose up --build -d && (npx wait-on http://localhost:3001/health --timeout 60000 && npm run test:all; EXIT_CODE=$?; docker compose down; exit $EXIT_CODE)",
+    "report:summary": "node scripts/generate-summary.js",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "keywords": [],
+  "author": "Yusuf Ogunjimi",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/dotenv": "^6.1.1",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "jest-ctrf-json-reporter": "^0.0.10",
+    "lint-staged": "^16.3.2",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "wait-on": "^9.0.4"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}
