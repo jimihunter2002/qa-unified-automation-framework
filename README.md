@@ -9,6 +9,10 @@ Dependencies
 5. **Git**
 6. **k6**: brew install k6 on mac or install based on platform
 
+### Assumptions
+
+Guardian service was implemented so that it would be easier to test similar to the dockerised version of ACE
+
 ### clone project install all dependencies from the root folder
 
 ```
