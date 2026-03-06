@@ -11,16 +11,18 @@ Dependencies
 
 ### install all dependencies, build and run test from root directory
 
-### root dir: unified-framework-ace-platform
+### root dir: unified-framework-ace-platform and run the commands below in your terminal
 
 ```git clone <repo>
 cd unified-framework-ace-plaform
-npm install
 npm run install:all
-cd guardian-service
-npm run build
-cd ..
-npm run start
+```
+
+### Run all tests and performance test as well as generates report as markdown locally
+
+```
+npm run ci
+
 ```
 
 ### After the docker service is running test with the curl command
@@ -34,43 +36,28 @@ curl http://localhost:3001/guardian/validate \
   {"approved":true,"violations":[]}
 ```
 
-### Run all tests and performance test
+### Reports location
 
 ```
-npm run test:all
-k6 run tests-performance/guardian-load.js
+reports/summary-report.md
 ```
 
 ## Project structure
 
 ```unified-framework-ace-plaform
 ├── README.md
+├── docker-compose.yml
+├── eslint.config.mjs
 ├── guardian-service
-│   ├── package.json
-│   └── tsconfig.json
 ├── package-lock.json
 ├── package.json
 ├── reports
 ├── scripts
 ├── tests-api
-│   ├── package.json
-│   └── tsconfig.json
 ├── tests-bdd
-│   ├── package.json
-│   └── tsconfig.json
 ├── tests-federated
-│   ├── package.json
-│   └── tsconfig.json
 ├── tests-pact
-│   ├── package.json
-│   └── tsconfig.json
 ├── tests-performance
-└── tests-ui
-    └── package.json
-```
-
-### Reports location
-
-```
-/reports
+├── tests-ui
+└── tsconfig.base.json
 ```
