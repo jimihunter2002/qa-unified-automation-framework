@@ -49,7 +49,7 @@ reports/summary-report.md
 
 ### Result on Github:
 
-[Guardian Service Report] (https://github.com/jimihunter2002/qa-unified-automation-framework/actions/runs/22765301262)
+[Guardian Service Report] (https://github.com/jimihunter2002/qa-unified-automation-framework/actions/runs/22768179257)
 
 ## Project structure
 
