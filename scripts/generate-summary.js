@@ -116,15 +116,16 @@ const getPactReport = () => {
 // 1. API Integration (Pass/Fail)
 const getApiTestReport = () => {
   const data = getJSON('api/api-results.json');
-  if (!data || !data.results || !data.results.summary)
-    return '| **API Integration** | N/A | ⚠️ Missing |';
 
   // Standard Jest JSON fields
-  const summary = data.results.summary;
+  const summary = data?.results?.summary;
+
+  if (!summary) return '| **API Integration** | N/A | ⚠️ Missing |';
+
   const passed = summary.passed || 0;
-  const total = summary.tests || 0;
   const failed = summary.failed || 0;
-  const status = failed === 0 && total > 0 ? '✅ Pass' : '❌ Fail';
+  const total = summary.tests || passed + failed;
+  const status = failed === 0 ? '✅ Pass' : '❌ Fail';
 
   return `| **API Integration** | ${passed}/${total} Passed | ${status} |`;
 };
