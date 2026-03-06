@@ -16,4 +16,4 @@ RUN npm run build
 
 EXPOSE 3001
 
-CMD ["npm", "dist/app.js"]
+CMD ["node", "dist/app.js"]
