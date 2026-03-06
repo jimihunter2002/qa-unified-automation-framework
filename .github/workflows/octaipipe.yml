@@ -47,6 +47,11 @@ jobs:
 
       - name: Prepare Reports Directory
         run: mkdir -p reports && rm -rf reports/*
+      - name: Show Docker containers
+        run: docker ps -a
+
+      - name: Show Docker logs
+        run: docker compose logs
 
       - name: Run CI Pipeline
         run: npm run ci

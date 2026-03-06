@@ -26,7 +26,7 @@
     "test:perf": "k6 run -e GUARDIAN_API_URL=http://localhost:3001 tests-performance/guardian-load.js",
     "test:federated": "npm run test -w tests-federated",
     "test:all": "npm run format:fix && npm run lint; npm run test:unit; npm run test:pact; npm run test:api; npm run test:bdd; npm run test:ui; npm run test:federated; npm run test:perf; npm run report:summary",
-    "ci": "npm run build:guardian && docker compose up --build -d && (npx wait-on http://localhost:3001/health --timeout 60000 && npm run test:all; EXIT_CODE=$?; docker compose down; exit $EXIT_CODE)",
+    "ci": "npm run build:guardian && docker compose up --build -d && (npx wait-on http://localhost:3001/health --timeout 120000 && npm run test:all; EXIT_CODE=$?; docker compose down; exit $EXIT_CODE)",
     "report:summary": "node scripts/generate-summary.js",
     "prepare": "husky"
   },

@@ -8,10 +8,10 @@ services:
     environment:
       NODE_ENV: test
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:3001/health']
+      test: ['CMD-SHELL', 'curl -f  http://localhost:3001/health || exit 1']
       interval: 5s
-      timeout: 3s
-      retries: 5
+      timeout: 5s
+      retries: 10
 
   ui:
     image: nginx:alpine
