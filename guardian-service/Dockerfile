@@ -6,9 +6,9 @@ WORKDIR /app
 
 COPY package*.json tsconfig.base.json ./
 
-COPY guardian-service/ ./guardian-service/
+COPY guardian-service/ ./guardian-service
 
-RUN npm install
+RUN npm install --workspace guardian-service --legacy-peer-deps
 
 WORKDIR /app/guardian-service
 
@@ -16,4 +16,4 @@ RUN npm run build
 
 EXPOSE 3001
 
-CMD ["npm", "start"]
+CMD ["npm", "dist/app.js"]
