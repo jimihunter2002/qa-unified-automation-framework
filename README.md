@@ -9,19 +9,20 @@ Dependencies
 5. **Git**
 6. **k6**: brew install k6 on mac or install based on platform
 
-### install all dependencies, build and run test from root directory
+### clone project install all dependencies from the root folder
 
-### root dir: unified-framework-ace-platform and run the commands below in your terminal
-
-```git clone <repo>
+```
+git clone git@github.com:jimihunter2002/qa-unified-automation-framework.git
 cd unified-framework-ace-plaform
 npm run install:all
 ```
 
-### Run all tests and performance test as well as generates report as markdown locally
+### build, start and run tests against guardian engine docker service locally or on CI
 
 ```
-npm run ci
+npm run test:ci --> for ci on github
+
+npn run test:local --> on local machine
 
 ```
 
@@ -36,11 +37,15 @@ curl http://localhost:3001/guardian/validate \
   {"approved":true,"violations":[]}
 ```
 
-### Reports location
+### Reports location on Local machine
 
 ```
 reports/summary-report.md
 ```
+
+### Result on Github:
+
+[Guardian Service Report] (https://github.com/jimihunter2002/qa-unified-automation-framework/actions/runs/22765301262)
 
 ## Project structure
 
