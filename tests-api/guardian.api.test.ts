@@ -119,6 +119,7 @@ describe('Guardian API', () => {
     const response = await axios.post(
       `${GUARDIAN_API_URL}/guardian/validate`,
       payload,
+      { validateStatus: () => true },
     );
     expect(response.status).toBe(400);
     expect(response.data.approved).toBe(false);

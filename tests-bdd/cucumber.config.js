@@ -1,7 +1,7 @@
-export default {
+module.exports = {
   default: {
     paths: ['features/**/*.feature'],
-    import: ['step-definitions/**/*.ts'],
+    require: ['step-definitions/**/*.ts'],
     requireModule: ['ts-node/register'],
     format: ['progress', 'json:../reports/bdd/bdd-results.json'],
   },

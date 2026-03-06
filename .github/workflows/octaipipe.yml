@@ -57,9 +57,9 @@ jobs:
         if: always()
         run: |
           if [ -f reports/summary-report.md ]; then
-            cat reports/summary-report.md >> $GITHUB_STEP_SUMMARY
+            cat reports/summary-report.md > $GITHUB_STEP_SUMMARY
           else
-            echo "Summary report not found" >> $GITHUB_STEP_SUMMARY
+            echo "Summary report not found" > $GITHUB_STEP_SUMMARY
           fi
 
       - name: Upload Reports

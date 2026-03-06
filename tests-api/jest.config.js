@@ -1,18 +1,35 @@
 export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  setupFiles: ['dotenv/config'], // Load .env before tests
+  rootDir: '../',
+  setupFiles: ['dotenv/config'],
+  // Force ts-jest to use the correct interop settings
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        diagnostics: {
+          ignoreCodes: [151001], // Hides the interop warning
+        },
+        tsconfig: {
+          esModuleInterop: true,
+          allowSyntheticDefaultImports: true,
+        },
+      },
+    ],
+  },
   reporters: [
     'default',
     [
       'jest-ctrf-json-reporter',
       {
-        outputDir: '../reports/api',
+        outputDir: 'reports/api',
         outputFile: 'api-results.json',
+        collectCoverage: true,
       },
     ],
   ],
-  coverageDirectory: '../reports/api-coverage',
+  coverageDirectory: 'reports/api-coverage',
   coverageReporters: ['json-summary', 'html', 'text'],
   coverageThreshold: {
     global: {
@@ -23,4 +40,10 @@ export default {
     },
   },
   collectCoverage: true,
+  collectCoverageFrom: [
+    'guardian-service/src/**/*.ts',
+    '!guardian-service/src/**/*.d.ts',
+    '!guardian-service/src/types.ts',
+  ],
+  testMatch: ['<rootDir>/tests-api/**/*.test.ts'],
 };

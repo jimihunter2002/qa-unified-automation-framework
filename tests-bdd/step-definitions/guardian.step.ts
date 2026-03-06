@@ -1,5 +1,6 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
+import type { AxiosResponse } from 'axios';
 import axios from 'axios';
 import * as dotenv from 'dotenv';
 import path from 'path';
@@ -24,11 +25,12 @@ interface GuardianPayload {
 }
 
 let payload: GuardianPayload;
-let response: axios.AxiosResponse<{ approved: boolean }>;
+let response: AxiosResponse<{ approved: boolean }>;
 
 const client = axios.create({
   baseURL: process.env.GUARDIAN_API_URL!,
   headers: { 'Content-Type': 'application/json' },
+  validateStatus: () => true,
   timeout: 5000, // Best practice: always set a timeout
 });
 

@@ -154,6 +154,7 @@ describe('Guardian Service Pact Test', () => {
         const res = await axios.post(
           `${mockServer.url}/guardian/validate`,
           payload,
+          { validateStatus: () => true },
         );
 
         expect(res.status).toBe(500);
