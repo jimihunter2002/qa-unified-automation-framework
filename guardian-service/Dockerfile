@@ -8,7 +8,7 @@ COPY package*.json tsconfig.base.json ./
 
 COPY guardian-service/ ./guardian-service
 
-RUN npm install --workspace guardian-service --legacy-peer-deps
+RUN npm install --workspace guardian-service --legacy-peer-deps --ignore-scripts
 
 WORKDIR /app/guardian-service
 
