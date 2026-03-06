@@ -1,91 +1,3 @@
-// import { describe, expect, test } from '@jest/globals';
-// import { Matchers, PactV4 } from '@pact-foundation/pact';
-// import axios from 'axios';
-// import path from 'node:path';
-// import { fileURLToPath } from 'node:url';
-
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-// interface MockServer {
-//   url: string;
-// }
-
-// const provider = new PactV4({
-//   consumer: 'ACE-Optimiser',
-//   provider: 'Guardian-Service',
-//   dir: path.resolve(__dirname, '../../reports/pacts'),
-// });
-
-// describe('Guardian Service Pact Test', () => {
-//   test('valid request returns approved: true', async () => {
-//     //Define the "Contract" for a valid scenario
-//     await provider
-//       .addInteraction()
-//       .given('the system is within normal operating constraints')
-//       .uponReceiving('a valid guardian validation request')
-//       .withRequest('POST', '/guardian/validate', (builder) => {
-//         builder.jsonBody({
-//           zone_id: 'DC-01',
-//           timestamp: new Date().toISOString(),
-//           current_state: {
-//             supply_air_temp: 21.5,
-//             return_air_temp: 29.8,
-//             max_rack_inlet_temp: 26.0,
-//             pue: 1.48,
-//           },
-//           recommended_setpoints: { supply_air_temp: 22.0 }, // Within constraints
-//           constraints: {
-//             max_supply_air_temp: 24.0,
-//             max_rack_inlet_temp: 27.0,
-//             min_supply_air_temp: 18.0,
-//           },
-//           digital_twin_prediction: {
-//             predicted_max_rack_inlet_temp: 26.0, // Within constraints
-//             predicted_pue: 1.42,
-//           },
-//         });
-//       })
-//       .willRespondWith(200, (builder) => {
-//         builder.jsonBody({
-//           approved: true,
-//           violations: [],
-//         });
-//       })
-//       .executeTest(async (mockServer: MockServer) => {
-//         const payload = {
-//           zone_id: 'DC-01',
-//           timestamp: Matchers.iso8601Datetime('2026-02-20T10:15:00Z'),
-//           current_state: {
-//             supply_air_temp: 21.5,
-//             return_air_temp: 29.8,
-//             max_rack_inlet_temp: 26.0,
-//             pue: 1.48,
-//           },
-//           recommended_setpoints: { supply_air_temp: 22.0 },
-//           constraints: {
-//             max_supply_air_temp: 24.0,
-//             max_rack_inlet_temp: 27.0,
-//             min_supply_air_temp: 18.0,
-//           },
-//           digital_twin_prediction: {
-//             predicted_max_rack_inlet_temp: 26.0,
-//             predicted_pue: 1.42,
-//           },
-//         };
-
-//         // Use mockServer.url (The ephemeral port Pact creates)
-//         const res = await axios.post(
-//           `${mockServer.url}/guardian/validate`,
-//           payload,
-//         );
-
-//         expect(res.status).toBe(200);
-//         expect(res.data.approved).toBe(true);
-//         expect(res.data.violations).toHaveLength(0);
-//       });
-//   });
-// });
-
 import { describe, expect, test } from '@jest/globals';
 import { Matchers, PactV4 } from '@pact-foundation/pact';
 import axios from 'axios';
@@ -101,7 +13,7 @@ interface MockServer {
 const provider = new PactV4({
   consumer: 'ACE-Optimiser',
   provider: 'Guardian-Service',
-  port: 3001,
+  port: 0,
   dir: path.resolve(__dirname, '../../reports/pacts'),
 });
 

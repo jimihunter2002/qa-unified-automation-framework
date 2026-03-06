@@ -3,6 +3,8 @@
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "types": ["jest", "node"],
     "skipLibCheck": true
   }

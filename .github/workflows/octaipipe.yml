@@ -52,13 +52,16 @@ jobs:
         env:
           GUARDIAN_API_URL: http://localhost:3001
           NODE_ENV: test
-      - name: Post Summary to PR
-        if: github.event_name == 'pull_request' && always()
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          filePath: reports/summary-report.md
-          comment_tag: qa-execution-summary
-          mode: recreate
+
+      - name: Post Summary to Job Summary
+        if: always()
+        run: |
+          if [ -f reports/summary-report.md ]; then
+            cat reports/summary-report.md >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Summary report not found" >> $GITHUB_STEP_SUMMARY
+          fi
+
       - name: Upload Reports
         if: always()
         uses: actions/upload-artifact@v4
